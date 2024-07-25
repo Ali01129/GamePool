@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import index from './screens/index';
 import OnBoarding from './screens/onboarding';
-
+import { StatusBar } from 'react-native';
 
 type RootStackParamList = {
   index: undefined;
@@ -31,6 +31,7 @@ export default function Navigation() {
 
   return (
     <NavigationContainer>
+      <StatusBar barStyle="light-content" backgroundColor="#000000" />
       <Stack.Navigator initialRouteName="OnBoarding" screenOptions={{headerShown:false}}>
         <Stack.Screen name="index" component={index} />
         <Stack.Screen name="Splash" component={Splash} />

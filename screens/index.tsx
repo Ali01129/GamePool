@@ -36,6 +36,7 @@ export default function App() {
 
   return (
     <View style={styles.container} {...panResponder.panHandlers}>
+      <StatusBar barStyle="light-content" backgroundColor="#000000" />
       <Webview link={list[linkIndex]} />
       <View style={styles.buttonsContainer}>
       </View>

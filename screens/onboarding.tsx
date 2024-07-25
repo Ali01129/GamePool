@@ -18,6 +18,7 @@ const OnBoarding: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#000000" />
       <View style={styles.content}>
         <Entypo name="game-controller" size={80} color="white" style={{ alignSelf: 'center', marginVertical: 40 }} />
         <Text style={styles.title}>Welcome to GamePool!</Text>
