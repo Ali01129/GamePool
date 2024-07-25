@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Splash from './screens/splash';
+import React, { useState, useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import index from './screens/index';
+import OnBoarding from './screens/onboarding';
 
-export default function App() {
+
+type RootStackParamList = {
+  index: undefined;
+  Splash: undefined;
+  OnBoarding: undefined;
+  Details: { itemId: number; otherParam?: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+export default function Navigation() {
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsSplashVisible(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isSplashVisible) {
+        return <Splash />;
+    }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="OnBoarding" screenOptions={{headerShown:false}}>
+        <Stack.Screen name="index" component={index} />
+        <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="OnBoarding" component={OnBoarding} />
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
