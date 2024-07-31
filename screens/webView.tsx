@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { WebView } from 'react-native-webview';
-import Constants from 'expo-constants';
 
 interface WebviewProps {
   link: string;
@@ -21,6 +20,5 @@ export default Webview;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight,
-  },
+  }
 });

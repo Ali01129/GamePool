@@ -1,9 +1,11 @@
-import { StyleSheet, Text,Image, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text,Image, View } from 'react-native';
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 
 const Splash = () => {
   return (
     <View style={styles.container}>
+        <StatusBar style='light' backgroundColor="#000000" />
         <Image source={require('../assets/fontbolt.png')} style={styles.img}/>
     </View>
   )
