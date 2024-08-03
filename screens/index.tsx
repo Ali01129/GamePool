@@ -3,10 +3,17 @@ import { StyleSheet, View, TouchableOpacity, StatusBar, Dimensions } from 'react
 import WebView from 'react-native-webview'; 
 import AntDesign from '@expo/vector-icons/AntDesign';
 import axios from 'axios';
+import {colors} from '../constants/colors';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 const { height: screenHeight } = Dimensions.get('window');
+type RootStackParamList = {
+  home: undefined;
+};
 
 const App = () => {
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [links, setLinks] = useState<string[]>([]);
   const [linkIndex, setLinkIndex] = useState(0);
 
@@ -43,17 +50,24 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#000000" />
+
+      <TouchableOpacity style={{padding:15,backgroundColor:colors.secondary,borderRadius:50,width:55,marginLeft:20,marginBottom:15}} onPress={()=>{navigation.navigate('home')}}>
+        <AntDesign name="arrowleft" size={24} color={colors.primary} style={{alignSelf:'center',fontWeight:'bold'}} />
+      </TouchableOpacity>
+
       <View style={styles.webviewContainer}>
         {links.length > 0 && <WebView source={{ uri: links[linkIndex] }} />}
       </View>
+
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button} onPress={handleDecrement}>
           <AntDesign name="caretleft" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleIncrement}>
-          <AntDesign name="caretright" size={24} color="black" />
+          <AntDesign name="caretright" size={24} color={colors.primary} />
         </TouchableOpacity>
       </View>
+
     </View>
   );
 };
@@ -65,7 +79,7 @@ const styles = StyleSheet.create({
   },
   webviewContainer: {
     flex: 1,
-    marginBottom: 100, // Adjust based on your needs
+    marginBottom: 100,
   },
   buttonsContainer: {
     position: 'absolute',
@@ -77,7 +91,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     backgroundColor: 'black',
     padding: 10,
-    height: 50, // Fixed height for buttons container
+    height: 50,
   },
   button: {
     backgroundColor: 'white',

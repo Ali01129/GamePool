@@ -3,22 +3,23 @@ import { StyleSheet, Text, View, TouchableOpacity,StatusBar } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign, Entypo } from '@expo/vector-icons';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import {colors} from '../constants/colors';
 
-// Define the type for the navigation prop
 type RootStackParamList = {
   index: undefined;
+  home: undefined;
 };
 
 const OnBoarding: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handleGetStartedPress = (): void => {
-    navigation.navigate('index');
+    navigation.navigate('home');
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#000000" />
+      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
       <View style={styles.content}>
         <Entypo name="game-controller" size={80} color="white" style={{ alignSelf: 'center', marginVertical: 40 }} />
         <Text style={styles.title}>Welcome to GamePool!</Text>
@@ -41,7 +42,7 @@ const OnBoarding: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: colors.primary,
     padding: 16,
     justifyContent: 'space-between',
   },
